@@ -3,8 +3,10 @@ apply plugin: PublicModulePlugin
 apply plugin: 'docker-compose'
 
 dependencies {
-    compile project (":eventuate-cdc-common-e2e-tests")
-    compile project (":eventuate-local-java-cdc-connector-common")
+    //compile project (":eventuate-cdc-common-e2e-tests")
+    compile "$group:eventuate-cdc-common-e2e-tests:$version"
+    //compile project (":eventuate-local-java-cdc-connector-common")
+    compile "$group:eventuate-local-java-cdc-connector-common:$version"
     testCompile "io.eventuate.messaging.kafka:eventuate-messaging-kafka-spring-common:$eventuateMessagingKafkaVersion"
     testCompile "io.eventuate.common:eventuate-common-spring-jdbc:$eventuateCommonVersion"
     testCompile "junit:junit:4.11"

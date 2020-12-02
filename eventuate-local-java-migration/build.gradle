@@ -10,7 +10,8 @@ dependencies {
         exclude group: "org.slf4j", module: "slf4j-log4j12"
     }
 
-    compile project (":eventuate-local-java-cdc-connector-mysql-binlog")
+    //compile project (":eventuate-local-java-cdc-connector-mysql-binlog")
+    compile "$group:eventuate-local-java-cdc-connector-mysql-binlog:$version"
     compile "io.eventuate.common:eventuate-common-spring-jdbc:$eventuateCommonVersion"
 
     testCompile "io.eventuate.messaging.kafka:eventuate-messaging-kafka-spring-common:$eventuateMessagingKafkaVersion"

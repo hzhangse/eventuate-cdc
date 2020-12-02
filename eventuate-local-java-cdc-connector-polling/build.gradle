@@ -1,13 +1,16 @@
 apply plugin: PublicModulePlugin
 
 dependencies {
-    compile project(":eventuate-local-java-cdc-connector-common")
+    //compile project(":eventuate-local-java-cdc-connector-common")
+    compile "$group:eventuate-local-java-cdc-connector-common:$version"
     compile "io.eventuate.common:eventuate-common-coordination-leadership-zookeeper:$eventuateCommonVersion"
     compile "io.eventuate.common:eventuate-common-spring-jdbc:$eventuateCommonVersion"
 
     testCompile "io.eventuate.messaging.kafka:eventuate-messaging-kafka-spring-common:$eventuateMessagingKafkaVersion"
-    testCompile project(":eventuate-local-java-test-util")
-    testCompile project(":eventuate-local-java-cdc-connector-test-util")
+    //testCompile project(":eventuate-local-java-test-util")
+    testCompile "$group:eventuate-local-java-test-util:$version"
+    //testCompile project(":eventuate-local-java-cdc-connector-test-util")
+    testCompile "$group:eventuate-local-java-cdc-connector-test-util:$version"
     testCompile "io.eventuate.util:eventuate-util-test:$eventuateUtilVersion"
     testCompile "junit:junit:4.11"
     testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"

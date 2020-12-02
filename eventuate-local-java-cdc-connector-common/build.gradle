@@ -1,8 +1,8 @@
 apply plugin: PublicModulePlugin
 
 dependencies {
-    compile project (":eventuate-cdc-data-producer-wrappers")
-
+ //   compile project (":eventuate-cdc-data-producer-wrappers")
+	compile "$group:eventuate-cdc-data-producer-wrappers:$version"
     compile "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
     compile "org.springframework.boot:spring-boot-starter:$springBootVersion"
     compile 'org.apache.curator:curator-recipes:2.11.0'

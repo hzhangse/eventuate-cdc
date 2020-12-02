@@ -1,7 +1,8 @@
 apply plugin: PublicModulePlugin
 
 dependencies {
-    compile project(":eventuate-local-java-cdc-connector-common")
+    //compile project(":eventuate-local-java-cdc-connector-common")
+    compile "$group:eventuate-local-java-cdc-connector-common:$version"
 }
 
 test {

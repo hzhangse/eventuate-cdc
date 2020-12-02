@@ -1,16 +1,20 @@
 apply plugin: PublicModulePlugin
 
 dependencies {
-    compile project(":eventuate-local-java-cdc-connector-db-log-common")
+    //compile project(":eventuate-local-java-cdc-connector-db-log-common")
+    compile "$group:eventuate-local-java-cdc-connector-db-log-common:$version"
     compile "io.eventuate.common:eventuate-common-coordination-leadership-zookeeper:$eventuateCommonVersion"
 
     compile ('org.postgresql:postgresql:42.1.4') {
         exclude group: "org.slf4j", module: "slf4j-simple"
     }
 
-    testCompile project(":eventuate-local-java-test-util")
-    testCompile project(":eventuate-local-java-cdc-connector-test-util")
-    testCompile project(":eventuate-local-java-cdc-connector-db-log-test-common")
+   // testCompile project(":eventuate-local-java-test-util")
+   testCompile "$group:eventuate-local-java-test-util:$version"
+   //testCompile project(":eventuate-local-java-cdc-connector-test-util")
+   testCompile "$group:eventuate-local-java-cdc-connector-test-util:$version"
+    //testCompile project(":eventuate-local-java-cdc-connector-db-log-test-common")
+    testCompile "$group:eventuate-local-java-cdc-connector-db-log-test-common:$version"
     testCompile "io.eventuate.util:eventuate-util-test:$eventuateUtilVersion"
     testCompile "junit:junit:4.11"
     testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"

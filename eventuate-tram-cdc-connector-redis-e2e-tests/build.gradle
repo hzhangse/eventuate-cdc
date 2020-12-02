@@ -2,8 +2,8 @@ apply plugin: PublicModulePlugin
 apply plugin: 'docker-compose'
 
 dependencies {
-    compile project (":eventuate-tram-cdc-connector-e2e-tests")
-
+    //compile project (":eventuate-tram-cdc-connector-e2e-tests")
+	compile "$group::eventuate-tram-cdc-connector-e2e-tests:$version"
     testCompile "io.eventuate.messaging.redis:eventuate-messaging-redis-spring-consumer:$eventuateMessagingRedisVersion"
     testCompile "io.eventuate.messaging.redis:eventuate-messaging-redis-spring-common:$eventuateMessagingRedisVersion"
     testCompile "io.eventuate.util:eventuate-util-test:$eventuateUtilVersion"

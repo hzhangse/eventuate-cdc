@@ -1,5 +1,6 @@
 buildscript {
     repositories {
+    	mavenLocal()
         jcenter()
         mavenCentral()
 
@@ -21,9 +22,21 @@ apply plugin: 'docker-compose'
 apply plugin: DockerServicesPlugin
 apply plugin: "io.eventuate.plugins.gradle.publish.EventuatePublish"
 apply plugin: "io.eventuate.plugins.gradle.publish.EventuatePublishDockerImages"
+apply plugin: 'maven'
 
 allprojects {
     group = "io.eventuate.cdc"
+}
+/*
+ * 指定所使用的仓库
+ */
+repositories {
+    // Gradle没有自己的中央仓库
+    // 先从本地maven仓库寻找依赖的jar包，存在则直接使用本地maven仓库的jar
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+    eventuateMavenRepoUrl.split(',').each { repoUrl -> maven { url repoUrl } }
 }
 
 projects {
@@ -33,10 +46,13 @@ projects {
 }
 
 subprojects {
+    apply plugin: 'maven'
+	apply plugin: 'java'
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
 
     repositories {
+    	mavenLocal()
         mavenCentral()
         jcenter()
         eventuateMavenRepoUrl.split(',').each { repoUrl -> maven { url repoUrl } }
@@ -44,6 +60,22 @@ subprojects {
 
     dependencies {
         testCompile "junit:junit:4.12"
+    }
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                repository(url: deployUrl)
+                pom.project {
+                    licenses {
+                        license {
+                            name 'The Apache Software License, Version 2.0'
+                            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                            distribution 'repo'
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
